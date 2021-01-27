@@ -67,7 +67,15 @@ const App: React.FC = () => {
           pets: [{ type: "cat", name: "jarvis", id: "" + Math.random() }]
         }}
         validationSchema={validationSchema}
-  
+        // validate={values => {
+        //   const errors: Record<string, string> = {};
+
+        //   if (values.firstName.includes("bob")) {
+        //     errors.firstName = "no bob";
+        //   }
+
+        //   return errors;
+        // }}
         onSubmit={(data, { setSubmitting }) => {
           setSubmitting(true);
           // make async call
@@ -77,15 +85,7 @@ const App: React.FC = () => {
       >
         {({ values, errors, isSubmitting }) => (
           <Form>
-
-            <div>
-              <Field
-                placeholder="first name"
-                name="firstName"
-                type="input"
-                as={TextField}
-              />
-            </div>
+            <MyTextField placeholder="first name" name="firstName" />
             <div>
               <Field
                 placeholder="last name"
@@ -103,17 +103,13 @@ const App: React.FC = () => {
               as={Checkbox}
             />
             <Field
-              name="cookies" 
+              name="cookies"
               type="checkbox"
-              value="snicker doodle"
+              value="snickerdoodle"
               as={Checkbox}
             />
-            <Field name="cookies" 
-            type="checkbox" 
-            value="sugar" 
-            as={Checkbox} />
+            <Field name="cookies" type="checkbox" value="sugar" as={Checkbox} />
             <div>yogurt</div>
-
             <MyRadio name="yogurt" type="radio" value="peach" label="peach" />
             <MyRadio
               name="yogurt"
@@ -122,7 +118,6 @@ const App: React.FC = () => {
               label="blueberry"
             />
             <MyRadio name="yogurt" type="radio" value="apple" label="apple" />
-            
             <FieldArray name="pets">
               {arrayHelpers => (
                 <div>
